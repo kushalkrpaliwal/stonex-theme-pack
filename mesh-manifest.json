@@ -1,0 +1,71 @@
+{
+  "type": "stonex-theme-pack",
+  "displayName": "Stonex Theme Pack",
+  "logoIconUrl": "http://localhost:3001/badge.svg",
+  "badgeIconUrl": "http://localhost:3001/badge.svg",
+  "category": "starters",
+  "baseLocationUrl": "http://localhost:3001",
+  "locations": {
+    "install": {
+      "description": [
+        "This integration installs Stonex Theme Pack."],
+      "informationUrl": "https://stonex.com"
+    },
+    "settings": {
+      "url": "/settings"
+    },
+    "canvas": {
+      "parameterTypes": [
+        {
+          "type": "stp-spacing-parameter",
+          "displayName": "Stonex Spacing",
+          "editorUrl": "/editor",
+          "configureUrl": "/config",
+          "renderableInPropertyPanel": true
+        },
+        {
+          "type": "stp-title-style-parameter",
+          "displayName": "Stonex Heading HTML Tag",
+          "editorUrl": "/editor",
+          "configureUrl": "/config",
+          "renderableInPropertyPanel": true
+        },
+        {
+          "type": "stp-color-parameter",
+          "displayName": "Stonex Brand Color",
+          "editorUrl": "/editor",
+          "configureUrl": "/config",
+          "renderableInPropertyPanel": true
+        },
+        {
+          "type": "stp-brand-cta-parameter",
+          "displayName": "Stonex Brand CTA Parameters",
+          "editorUrl": "/editor",
+          "configureUrl": "/config",
+          "renderableInPropertyPanel": true
+        },
+        {
+          "type": "stp-box-model-editor",
+          "displayName": "Stonex Box Model Editor",
+          "editorUrl": "/editor",
+          "configureUrl": "/config",
+          "renderableInPropertyPanel": true
+        },
+        {
+          "type": "stp-border-radius-parameter",
+          "displayName": "Stonex Border Radius",
+          "editorUrl": "/editor",
+          "configureUrl": "/config",
+          "renderableInPropertyPanel": true
+        },
+        {
+          "type": "stp-box-shadow-parameter",
+          "displayName": "Stonex Box Shadow",
+          "editorUrl": "/editor",
+          "configureUrl": "/config",
+          "renderableInPropertyPanel": true
+        }
+      ]
+    }
+  }
+}
