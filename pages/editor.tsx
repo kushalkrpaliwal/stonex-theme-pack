@@ -32,7 +32,7 @@ const ThemePackParametersEditor: FC = () => {
       return (
         <ReadOnlyContainer isReadOnly={isReadOnly}>
           <SpacingParam
-            value={value as string}
+            value={value as SpacingOptionType}
             selectedTheme={themes?.[selectedThemeName]}
             setValue={setValue as SetLocationValueDispatch<SpacingOptionType | undefined, SpacingOptionType | undefined>}
           />
