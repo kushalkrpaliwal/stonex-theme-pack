@@ -1,0 +1,17 @@
+[
+  {
+    "themeLabel": "Forex",
+    "themeName": "forex",
+    "iconUrl": "https://www.forex.com/en-uk/-/media/project/gain-capital/forex/icons/core/header/fxall-forex-logo-clear-background-bl.png"
+  },
+  {
+    "themeLabel": "City Index",
+    "themeName": "cityIndex",
+    "iconUrl": "https://www.cityindex.com/en-uk/-/media/project/gain-capital/city-index/logos/city-index-brand/city-index-logo-black.png"
+  },
+  {
+    "themeLabel": "Stonex",
+    "themeName": "stonex",
+    "iconUrl": "https://www.stonex.com/-/media/project/gain-capital/stonex/stonex-main/logos/stonex-logo-black.svg"
+  }
+]
