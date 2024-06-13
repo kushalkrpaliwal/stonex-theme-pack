@@ -8,7 +8,6 @@ export type BrandCTAProps = {
   size?: 'sm' | 'lg';
   type?: 'primary' | 'secondary' | 'tertiary';
   style?: 'brand' | 'info' | 'success' | 'warning' | 'error';
-  icon?: string;
   className?: string;
 };
 
@@ -26,7 +25,6 @@ const defaultState: BrandCTAProps = {
   size: 'sm',
   type: 'primary',
   style: 'brand',
-  icon: 'icon',
   className: 'cta-button-brand-primary',
 };
 

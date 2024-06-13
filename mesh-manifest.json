@@ -1,10 +1,10 @@
 {
   "type": "stonex-theme-pack",
   "displayName": "Stonex Theme Pack",
-  "logoIconUrl": "http://localhost:3001/badge.svg",
-  "badgeIconUrl": "http://localhost:3001/badge.svg",
+  "logoIconUrl": "https://stonex-theme-pack.vercel.app/StonexLogo.svg",
+  "badgeIconUrl": "https://stonex-theme-pack.vercel.app/StonexIcon.svg",
   "category": "starters",
-  "baseLocationUrl": "http://localhost:3001",
+  "baseLocationUrl": "https://stonex-theme-pack.vercel.app",
   "locations": {
     "install": {
       "description": [
