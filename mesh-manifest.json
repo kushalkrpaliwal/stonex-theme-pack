@@ -45,8 +45,8 @@
           "renderableInPropertyPanel": true
         },
         {
-          "type": "stp-box-model-editor",
-          "displayName": "Stonex Box Model Editor",
+          "type": "stp-box-model",
+          "displayName": "Stonex Box Model",
           "editorUrl": "/editor",
           "configureUrl": "/config",
           "renderableInPropertyPanel": true
@@ -61,6 +61,13 @@
         {
           "type": "stp-box-shadow-parameter",
           "displayName": "Stonex Box Shadow",
+          "editorUrl": "/editor",
+          "configureUrl": "/config",
+          "renderableInPropertyPanel": true
+        },
+        {
+          "type": "stp-flex-box-parameter",
+          "displayName": "Stonex Flex Box",
           "editorUrl": "/editor",
           "configureUrl": "/config",
           "renderableInPropertyPanel": true

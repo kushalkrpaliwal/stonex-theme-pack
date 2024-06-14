@@ -6,7 +6,7 @@ import { spacing } from '../../tokens/tokens';
 
 const spacingTokens = spacing.spacing;
 
-export type BoxModel = {
+export type BoxModelType = {
   padding: Sides;
   border: Sides;
   margin: Sides;
@@ -20,17 +20,17 @@ type Sides = {
 };
 
 type BoxModelEditorProps = {
-  value?: BoxModel;
-  setValue: SetLocationValueDispatch<BoxModel | undefined, BoxModel | undefined>;
+  value?: BoxModelType;
+  setValue: SetLocationValueDispatch<BoxModelType | undefined, BoxModelType | undefined>;
 };
 
-const defaultState: BoxModel = {
+const defaultState: BoxModelType = {
   padding: { top: 0, right: 0, bottom: 0, left: 0 },
   border: { top: 0, right: 0, bottom: 0, left: 0 },
   margin: { top: 0, right: 0, bottom: 0, left: 0 },
 };
 
-const BoxModelEditor: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorProps) => {
+const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorProps) => {
   useEffect(() => {
     setValue(previousValue => {
       return {
@@ -40,7 +40,7 @@ const BoxModelEditor: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEd
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleChange = (property: keyof BoxModel, side: keyof Sides, value: number) => {
+  const handleChange = (property: keyof BoxModelType, side: keyof Sides, value: number) => {
     setValue((prev = defaultState) => {
       return {
         newValue: {
@@ -134,4 +134,4 @@ const BoxModelEditor: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEd
   );
 };
 
-export default BoxModelEditor;
+export default BoxModel;

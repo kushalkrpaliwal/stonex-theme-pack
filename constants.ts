@@ -6,6 +6,7 @@ export enum ThemePackParameters {
   boxModelEditor = 'stp-box-model-editor',
   broderRadiusParam = 'stp-border-radius-parameter',
   boxShadowParam = 'stp-box-shadow-parameter',
+  flexBoxParam = 'stp-flex-box-parameter',
 }
 
 export const TRUE_VALIDATION_RESULT = Object.freeze({ isValid: true });

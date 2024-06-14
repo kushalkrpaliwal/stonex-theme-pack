@@ -1,4 +1,5 @@
-import { Theme } from './common';
+import { Theme } from './common'
+import { SegmentedControlOption } from '@uniformdev/design-system'
 
 export const enum SliderType {
   Custom = 'custom',
@@ -29,4 +30,17 @@ export interface SettingsParams {
   themes: {
     [name: string]: Theme;
   };
+}
+
+export interface FlexBoxControls {
+  alignItems: SegmentedControlOption<string>[];
+  justifyContent: SegmentedControlOption<string>[];
+  flexDirection: SegmentedControlOption<string>[];
+}
+
+export interface FlexBoxValue {
+  useFlexBox: boolean;
+  alignItems: string;
+  justifyContent: string;
+  flexDirection: string;
 }

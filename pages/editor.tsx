@@ -3,13 +3,14 @@ import { Callout, SetLocationValueDispatch, useMeshLocation } from '@uniformdev/
 import TitleStyleParam from '../components/parameters/TitleStyleParam';
 import SpacingParam, { SpacingOptionType } from '../components/parameters/SpacingParam'
 import { ThemePackParameters } from '../constants';
-import { MeshThemePackParametersDefinition, SettingsParams } from '../types/mesh';
+import { FlexBoxValue, MeshThemePackParametersDefinition, SettingsParams, SliderOptions } from '../types/mesh'
 import ReadOnlyContainer from '../components/ReadOnlyContainer';
 import ColorStyleParam from '../components/parameters/ColorStyleParam';
 import BrandCTAParam, { BrandCTAProps } from '../components/parameters/BrandCTAParam'
-import BoxModelEditor, { BoxModel } from '../components/parameters/BoxModelEditor';
+import BoxModel, { BoxModelType } from '../components/parameters/BoxModel';
 import { BorderRadiusSlider } from '../components/parameters/BorderRadius';
 import { BoxShadow } from '../components/parameters/BoxShadow'
+import FlexBox from '../components/parameters/FlexBox'
 
 const ThemePackParametersEditor: FC = () => {
   const { value, setValue, metadata, isReadOnly } = useMeshLocation<'paramType', string | BrandCTAProps | undefined>();
@@ -60,9 +61,9 @@ const ThemePackParametersEditor: FC = () => {
     case ThemePackParameters.boxModelEditor:
       return (
         <ReadOnlyContainer isReadOnly={isReadOnly}>
-          <BoxModelEditor
-            value={value as BoxModel}
-            setValue={setValue as SetLocationValueDispatch<BoxModel | undefined, BoxModel | undefined>}
+          <BoxModel
+            value={value as BoxModelType}
+            setValue={setValue as SetLocationValueDispatch<BoxModelType | undefined, BoxModelType | undefined>}
           />
         </ReadOnlyContainer>
       );
@@ -81,6 +82,15 @@ const ThemePackParametersEditor: FC = () => {
           <BoxShadow
             value={value as string}
             setValue={setValue as SetLocationValueDispatch<string | undefined, string | undefined>}
+          />
+        </ReadOnlyContainer>
+      );
+    case ThemePackParameters.flexBoxParam:
+      return (
+        <ReadOnlyContainer isReadOnly={isReadOnly}>
+          <FlexBox
+            value={value as FlexBoxValue}
+            setValue={setValue as SetLocationValueDispatch<FlexBoxValue | undefined, FlexBoxValue | undefined>}
           />
         </ReadOnlyContainer>
       );
