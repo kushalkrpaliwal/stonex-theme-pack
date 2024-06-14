@@ -70,6 +70,7 @@ const FlexBox: FC<FlexBoxProps> = ({ value, setValue }: FlexBoxProps) => {
 
       {value?.useFlexBox && (
         <>
+          <p>Flex Direcotion</p>
           <SegmentedControl
             name="flexDirection"
             onChange={val => handelSetValue('flexDirection', val)}
@@ -79,6 +80,8 @@ const FlexBox: FC<FlexBoxProps> = ({ value, setValue }: FlexBoxProps) => {
             noCheckmark
             orientation={'horizontal'}
           />
+          <br/>
+          <p>Align Items</p>
           <SegmentedControl
             name="alignItems"
             onChange={val => handelSetValue('alignItems', val)}
@@ -88,6 +91,8 @@ const FlexBox: FC<FlexBoxProps> = ({ value, setValue }: FlexBoxProps) => {
             noCheckmark
             orientation={'horizontal'}
           />
+          <br/>
+          <p>Justify Content</p>
           <SegmentedControl
             name="justifyContent"
             onChange={val => handelSetValue('justifyContent', val)}
