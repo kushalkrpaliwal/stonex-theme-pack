@@ -1,7 +1,9 @@
-import { FC, useEffect } from 'react'
-import { SegmentedControl } from '@uniformdev/design-system'
+import React, { FC, useEffect, useState } from 'react'
+import { SegmentedControl, SegmentedControlOption } from '@uniformdev/design-system'
 import { InputToggle, SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react'
 import { FlexBoxControls, FlexBoxValue } from '../../types/mesh'
+import ReactSlider from 'react-slider'
+import { tokens } from '../../fe-app/src/tokens/tokens'
 
 const FLEX_BOX_OPTIONS: FlexBoxControls = {
   alignItems: [
@@ -29,13 +31,33 @@ const FLEX_BOX_OPTIONS: FlexBoxControls = {
     { label: 'Column', value: 'flex-col' },
     { label: 'Column Reverse', value: 'flex-col-reverse' },
   ],
+  gap: [
+    { label: 'None', value: '' },
+    ...tokens
+      .filter((t, i, s) => s.indexOf(t) === i && t.attributes.category === 'gap')
+      .map(t => ({
+        // @ts-ignore
+        label: t.attributes?.type?.toUpperCase(),
+        value: t.name
+      }))
+      .reduce((acc: SegmentedControlOption<string>[], current: SegmentedControlOption<string>) => {
+        const x = acc.find(item => item.value === current.value)
+        if (!x) {
+          acc.push(current)
+        }
+        return acc
+      }, [])
+  ],
 }
+
+console.log(FLEX_BOX_OPTIONS.gap)
 
 const defaultState: FlexBoxValue = {
   useFlexBox: false,
   flexDirection: FLEX_BOX_OPTIONS.flexDirection[0].value,
   alignItems: FLEX_BOX_OPTIONS.alignItems[0].value,
   justifyContent: FLEX_BOX_OPTIONS.justifyContent[0].value,
+  gap: FLEX_BOX_OPTIONS.gap[0].value,
 }
 
 type FlexBoxProps = {
@@ -44,6 +66,12 @@ type FlexBoxProps = {
 };
 
 const FlexBox: FC<FlexBoxProps> = ({ value, setValue }: FlexBoxProps) => {
+  const [currentGapValue, setCurrentGapValue] = useState<number>(() => {
+    const savedIndex = FLEX_BOX_OPTIONS.gap.findIndex(g => String(g.value) === String(value?.gap))
+
+    return savedIndex > -1 ? savedIndex : 0
+  })
+
   useEffect(() => {
     setValue(previousValue => ({ newValue: previousValue || defaultState }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,7 +79,6 @@ const FlexBox: FC<FlexBoxProps> = ({ value, setValue }: FlexBoxProps) => {
 
   const handelSetValue = (property: string, newValue: string | boolean) => {
     setValue((prev = defaultState) => {
-      console.log({ property, newValue, prev })
       return {
         newValue: {
           ...prev,
@@ -61,7 +88,10 @@ const FlexBox: FC<FlexBoxProps> = ({ value, setValue }: FlexBoxProps) => {
     })
   }
 
-  console.log({ value })
+  const handleGapValueChange = (index: number) => {
+    setCurrentGapValue(index)
+    handelSetValue('gap', FLEX_BOX_OPTIONS.gap[index].value)
+  }
 
   return (
     <div className={'flex flex-col gap-xs'}>
@@ -70,7 +100,7 @@ const FlexBox: FC<FlexBoxProps> = ({ value, setValue }: FlexBoxProps) => {
 
       {value?.useFlexBox && (
         <>
-          <p>Flex Direcotion</p>
+          <p>Flex Direction</p>
           <SegmentedControl
             name="flexDirection"
             onChange={val => handelSetValue('flexDirection', val)}
@@ -100,6 +130,20 @@ const FlexBox: FC<FlexBoxProps> = ({ value, setValue }: FlexBoxProps) => {
             noCheckmark
             orientation={'horizontal'}
           />
+          <p>Gap</p>
+          <div className="slider-style-container">
+            <ReactSlider
+              className="horizontal-slider"
+              thumbClassName="slider-thumb"
+              min={0}
+              max={FLEX_BOX_OPTIONS.gap.length ? FLEX_BOX_OPTIONS.gap.length - 1 : 0}
+              onChange={handleGapValueChange}
+              step={1}
+              value={currentGapValue}
+            />
+            <div
+              className="slider-thumb-value">{`${FLEX_BOX_OPTIONS.gap?.[currentGapValue].label}`}</div>
+          </div>
         </>
       )}
     </div>

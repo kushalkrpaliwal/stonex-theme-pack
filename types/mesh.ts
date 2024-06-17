@@ -36,6 +36,7 @@ export interface FlexBoxControls {
   alignItems: SegmentedControlOption<string>[];
   justifyContent: SegmentedControlOption<string>[];
   flexDirection: SegmentedControlOption<string>[];
+  gap: SegmentedControlOption<string>[];
 }
 
 export interface FlexBoxValue {
@@ -43,4 +44,5 @@ export interface FlexBoxValue {
   alignItems: string;
   justifyContent: string;
   flexDirection: string;
+  gap: string;
 }

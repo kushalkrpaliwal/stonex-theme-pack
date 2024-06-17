@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react';
 import ReactSlider from 'react-slider';
-import { boxShadow } from '../../tokens/tokens';
+import { boxShadow } from '../../fe-app/src/tokens/tokens';
 
 type Option = {
   value: string;

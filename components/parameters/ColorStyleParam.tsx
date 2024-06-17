@@ -3,8 +3,8 @@ import { SetLocationValueDispatch, ValidationResult } from '@uniformdev/mesh-sdk
 import { Theme } from '../../types/common';
 import { TRUE_VALIDATION_RESULT } from '../../constants';
 
-import { colors as colorTokens } from '../../tokens/tokens';
-import { NestedObject } from '../../tokens/fns';
+import { colors as colorTokens } from '../../fe-app/src/tokens/tokens';
+import { NestedObject } from '../../fe-app/src/tokens/fns';
 
 const validate = (value?: string): ValidationResult => {
   if (!value) {

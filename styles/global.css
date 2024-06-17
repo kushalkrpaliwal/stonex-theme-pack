@@ -2,15 +2,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import "../tokens/global/functional.css";
-@import "../tokens/css/wireframe/mobile.css";
-@import "../tokens/css/stonex/light/mobile.css";
-@import "../tokens/css/stonex/dark/mobile.css";
-@import "../tokens/css/forex/light/mobile.css";
-@import "../tokens/css/forex/dark/mobile.css";
-@import "../tokens/css/ci/light/mobile.css";
-@import "../tokens/css/ci/dark/mobile.css";
-
 body::-webkit-scrollbar {
   width: 0;
   height: 0;
@@ -49,13 +40,13 @@ body::-webkit-scrollbar-thumb {
   width: 35%;
   flex-direction: column;
   gap: 1rem;
-  border: 1px solid var(--gray-400);
+  border: 1px solid var(--tints-mid-400);
   border-radius: 6px;
 }
 
 .theme-selector-divider {
   height: 1px;
-  background-color: var(--gray-400);
+  background-color: var(--tints-mid-400);
   margin: 0 -1rem;
 }
 
@@ -74,12 +65,12 @@ body::-webkit-scrollbar-thumb {
 
 .theme-item:hover {
   cursor: pointer;
-  background: var(--brand-secondary-2);
+  background: var(--tints-saturated-400);
   transition: background, 500ms;
 }
 
 .selected-theme-item:not(.nohover) {
-  background: var(--brand-secondary-2);
+  background: var(--tints-saturated-400);
   transition: background, 500ms;
   cursor: default;
 }
@@ -90,7 +81,7 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border: 1px solid var(--gray-400);
+  border: 1px solid var(--tints-mid-400);
   border-radius: 6px;
 }
 
@@ -121,14 +112,14 @@ body::-webkit-scrollbar-thumb {
   width: 10px;
   height: 26px;
   border-radius: 4px;
-  border: 1px solid var(--gray-400);
+  border: 1px solid var(--tints-mid-400);
 }
 
 .color-item-pick-circle {
   width: 26px;
   height: 26px;
   border-radius: 26px;
-  border: 1px solid var(--gray-400);
+  border: 1px solid var(--tints-mid-400);
 }
 
 .color-item-input {
@@ -167,7 +158,7 @@ body::-webkit-scrollbar-thumb {
   width: 32px;
   height: 26px;
   border-radius: 4px;
-  border: 1px solid var(--gray-400);
+  border: 1px solid var(--tints-mid-400);
   transition: 500ms;
 }
 
@@ -177,7 +168,7 @@ body::-webkit-scrollbar-thumb {
 
 .segmented-container {
   min-height: 2rem;
-  color: var(--gray-400);
+  color: var(--tints-mid-400);
 }
 
 .slider-style-container {
@@ -185,13 +176,14 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   padding: 10px 8px 0 8px;
   justify-content: center;
+  position: relative;
 }
 
 .horizontal-slider {
   width: 100%;
   height: 0.6rem;
   border-radius: 6px;
-  background: var(--gray-400);
+  background: var(--tints-unsaturated-300);
   position: relative;
   cursor: pointer;
 }
@@ -201,11 +193,11 @@ body::-webkit-scrollbar-thumb {
   width: 26px;
   height: 26px;
   border-radius: 100%;
-  background-color: var(--brand-secondary-3);
+  background-color: var(--tints-saturated-500);
 }
 
 .slider-thumb-value {
-  color: var(--brand-secondary-1);
+  color: var(--tints-saturated-800);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,6 +205,7 @@ body::-webkit-scrollbar-thumb {
   top: 30px;
   text-align: center;
   font-size: var(--fs-sm);
+  font-weight: bold;
 }
 
 .wrong-value-container {
@@ -240,4 +233,11 @@ body::-webkit-scrollbar-thumb {
 
 .read-only-container * {
   pointer-events: none;
+}
+
+.padding-box-layout,
+.border-box-layout,
+.margin-box-layout{
+  position: relative;
+  background-image: url('/assets/boxModelBackground.svg');
 }

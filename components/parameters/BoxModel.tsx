@@ -1,8 +1,8 @@
 'use client';
-import React, { useEffect, FC, ChangeEventHandler } from 'react';
+import React, { useEffect, FC, ChangeEventHandler, useRef } from 'react'
 import clsx from 'clsx';
 import { SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react';
-import { spacing } from '../../tokens/tokens';
+import { spacing } from '../../fe-app/src/tokens/tokens';
 
 const spacingTokens = spacing.spacing;
 
@@ -30,7 +30,22 @@ const defaultState: BoxModelType = {
   margin: { top: 0, right: 0, bottom: 0, left: 0 },
 };
 
+const Background = () => <svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="0,0 100,50 0,100" fill="#dfe6ef"/>
+  <polygon points="200,0 100,50 200,100" fill="#dfe6ef"/>
+  <polygon points="0,0 100,50 200,0" fill="#f3f8fe"/>
+  <polygon points="0,100 100,50 200,100" fill="#f3f8fe"/>
+</svg>
+
 const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.style.setProperty('height', containerRef.current.getBoundingClientRect().width + 'px');
+    }
+  }, [containerRef.current])
+
   useEffect(() => {
     setValue(previousValue => {
       return {
@@ -76,8 +91,11 @@ const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorPr
   };
 
   return (
-    <div data-brand={"stonex"} data-theme={"light"} className={'grid grid-cols-7 grid-rows-7 font-body-xs-default'}>
-      <div className={'bg-orange-700 grid grid-cols-7 grid-rows-7 col-start-1 row-start-1 col-span-7 row-span-7'}>
+    <div data-brand={"stonex"} data-theme={"light"}
+         className={'grid grid-cols-7 grid-rows-7 font-body-xs-default overflow-hidden'} ref={containerRef}>
+      <div
+        className={'margin-box-layout bg-orange-700 grid grid-cols-7 grid-rows-7 col-start-1 row-start-1 col-span-7 row-span-7'}>
+        <Background/>
         <span className={'text-xs col-start-1'}>Margin</span>
         {renderControls(value?.margin.top || 0, val => handleChange('margin', 'top', val), 'col-start-4 row-start-1')}
         {renderControls(
@@ -93,7 +111,8 @@ const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorPr
         {renderControls(value?.margin.left || 0, val => handleChange('margin', 'left', val), 'col-start-1 row-start-4')}
       </div>
 
-      <div className={'bg-orange-300 grid grid-cols-5 grid-rows-5 col-start-2 row-start-2 col-span-5 row-span-5'}>
+      <div
+        className={'border-box-layout bg-orange-300 grid grid-cols-5 grid-rows-5 col-start-2 row-start-2 col-span-5 row-span-5'}>
         <span className={'text-xs col-start-1'}>Border</span>
 
         {renderControls(value?.border.top || 0, val => handleChange('border', 'top', val), 'col-start-3 row-start-1')}
@@ -109,7 +128,9 @@ const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorPr
         )}
         {renderControls(value?.border.left || 0, val => handleChange('border', 'left', val), 'col-start-1 row-start-3')}
       </div>
-      <div className={'bg-green-400 grid grid-cols-3 grid-rows-3 col-start-3 row-start-3 col-span-3 row-span-3'}>
+
+      <div
+        className={'padding-box-layout bg-green-400 grid grid-cols-3 grid-rows-3 col-start-3 row-start-3 col-span-3 row-span-3'}>
         <span className={'text-xs col-start-1'}>Padding</span>
 
         {renderControls(value?.padding.top || 0, val => handleChange('padding', 'top', val), 'col-start-2 row-start-1')}
@@ -129,7 +150,8 @@ const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorPr
           'col-start-1 row-start-2'
         )}
       </div>
-      <div className={'bg-blue-200 col-start-4 row-start-4 col-span-1 row-span-1'} />
+
+      <div className={'bg-blue-200 col-start-4 row-start-4 col-span-1 row-span-1'}/>
     </div>
   );
 };

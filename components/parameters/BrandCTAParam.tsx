@@ -3,7 +3,6 @@ import { FC, useEffect } from 'react';
 import { SegmentedControl } from '@uniformdev/design-system';
 import { SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react';
 
-
 export type BrandCTAProps = {
   size?: 'sm' | 'lg';
   type?: 'primary' | 'secondary' | 'tertiary';
