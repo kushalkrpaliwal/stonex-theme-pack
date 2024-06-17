@@ -204,7 +204,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   top: 30px;
   text-align: center;
-  font-size: var(--fs-sm);
+  font-size: 12px;
   font-weight: bold;
 }
 
@@ -237,7 +237,18 @@ body::-webkit-scrollbar-thumb {
 
 .padding-box-layout,
 .border-box-layout,
-.margin-box-layout{
-  position: relative;
-  background-image: url('/assets/boxModelBackground.svg');
+.margin-box-layout {
+  @apply relative rounded-2 border-4 border-solid border-Tints-Saturated-400;
+
+  & > *:not(svg) {
+    @apply relative z-10;
+  }
+
+  svg {
+    @apply absolute z-0 w-full h-full;
+  }
+}
+
+.box-model-label {
+  @apply text-xs col-start-1 p-4;
 }
