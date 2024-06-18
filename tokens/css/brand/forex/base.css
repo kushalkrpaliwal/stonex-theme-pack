@@ -94,8 +94,8 @@
   --default-heading: var(--light);
   --emphasis-body: var(--bold);
   --emphasis-heading: var(--medium);
-  --border-button: var(--border-rounded);
-  --border-lg: var(--border-16);
-  --border-md: var(--border-8);
-  --border-sm: var(--border-2);
+  --rounded-button: var(--rounded-rounded);
+  --rounded-lg: var(--rounded-16);
+  --rounded-md: var(--rounded-8);
+  --rounded-sm: var(--rounded-2);
 }

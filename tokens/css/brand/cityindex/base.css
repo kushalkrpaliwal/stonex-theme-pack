@@ -80,9 +80,9 @@
   --line-height-body: 1.3;
   --line-height-heading: 1.2;
   --brand: Aeonik;
-  --border-lg: 0;
-  --border-md: 0;
-  --border-sm: 0;
+  --rounded-lg: 0;
+  --rounded-md: 0;
+  --rounded-sm: 0;
   --type-cta-tertiary-sm: var(--emphasis-body) var(--size-body-sm)/var(--line-height-body) var(--brand);
   --type-cta-tertiary-lg: var(--emphasis-body) var(--size-body-md)/var(--line-height-body) var(--brand);
   --type-cta-primary-sm: var(--default-body) var(--size-body-sm)/var(--line-height-body) var(--brand);
@@ -91,5 +91,5 @@
   --default-heading: var(--light);
   --emphasis-body: var(--bold);
   --emphasis-heading: var(--medium);
-  --border-button: var(--border-rounded);
+  --rounded-button: var(--rounded-rounded);
 }
