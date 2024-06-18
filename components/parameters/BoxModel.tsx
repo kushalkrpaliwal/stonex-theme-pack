@@ -2,7 +2,7 @@
 import React, { useEffect, FC, ChangeEventHandler } from 'react'
 import clsx from 'clsx';
 import { SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react';
-import { spacing } from '../../fe-app/src/tokens/tokens';
+import { spacing } from '../../tokens/tokens';
 
 const spacingTokens = spacing.spacing;
 

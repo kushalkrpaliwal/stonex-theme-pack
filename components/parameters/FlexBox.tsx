@@ -3,7 +3,7 @@ import { SegmentedControl, SegmentedControlOption } from '@uniformdev/design-sys
 import { InputToggle, SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react'
 import { FlexBoxControls, FlexBoxValue } from '../../types/mesh'
 import ReactSlider from 'react-slider'
-import { tokens } from '../../fe-app/src/tokens/tokens'
+import { tokens } from '../../tokens/tokens'
 
 const FLEX_BOX_OPTIONS: FlexBoxControls = {
   alignItems: [
@@ -34,7 +34,7 @@ const FLEX_BOX_OPTIONS: FlexBoxControls = {
   gap: [
     { label: 'None', value: '' },
     ...tokens
-      .filter((t, i, s) => s.indexOf(t) === i && t.attributes.category === 'gap')
+      .filter((t, i, s) => s.indexOf(t) === i && t?.attributes?.category === 'gap')
       .map(t => ({
         // @ts-ignore
         label: t.attributes?.type?.toUpperCase(),
@@ -49,8 +49,6 @@ const FLEX_BOX_OPTIONS: FlexBoxControls = {
       }, [])
   ],
 }
-
-console.log(FLEX_BOX_OPTIONS.gap)
 
 const defaultState: FlexBoxValue = {
   useFlexBox: false,

@@ -1,16 +1,19 @@
 import React, { FC, useState } from 'react';
 import { SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react';
 import ReactSlider from 'react-slider';
-import { borderRadius } from '../../fe-app/src/tokens/tokens';
+import { tokens } from '../../tokens/tokens'
 
 type Option = {
   value: string;
   label: string;
 };
 
-const options = Object.keys(borderRadius?.border)
-  // .filter(key => isNaN(parseInt(key)))
-  .map(key => ({ label: key, value: `rounded-${key}` }) as Option);
+const options: Option[] = tokens
+  .filter(t => t.type === 'borderRadius')
+  .map(t => ({
+    label: t.attributes.type?.toUpperCase() || 'None',
+    value: t.name,
+  }))
 
 type BorderRadiusSliderProps = {
   value?: string;

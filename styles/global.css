@@ -2,6 +2,15 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/*@import "../tokens/global/functional.css";*/
+/*@import "../tokens/css/wireframe/mobile.css";*/
+/*@import "../tokens/css/stonex/light/mobile.css";*/
+/*@import "../tokens/css/stonex/dark/mobile.css";*/
+/*@import "../tokens/css/forex/light/mobile.css";*/
+/*@import "../tokens/css/forex/dark/mobile.css";*/
+/*@import "../tokens/css/ci/light/mobile.css";*/
+/*@import "../tokens/css/ci/dark/mobile.css";*/
+
 body::-webkit-scrollbar {
   width: 0;
   height: 0;

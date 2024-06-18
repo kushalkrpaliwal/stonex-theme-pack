@@ -1,0 +1,12 @@
+:root {
+  --white: #fff;
+  --placeholder: #f00;
+  --none: none;
+  --uppercase: uppercase;
+  --underline: underline;
+  --bold: 700;
+  --light: 300;
+  --regular: 400;
+  --medium: 500;
+  --transparent: rgba(255,255,255,0);
+}

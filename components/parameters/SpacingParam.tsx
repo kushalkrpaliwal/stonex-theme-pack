@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { SegmentedControl } from '@uniformdev/design-system';
 import { SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react';
 import { Theme } from '../../types/common';
-import { spacing } from '../../fe-app/src/tokens/tokens';
+import { spacing } from '../../tokens/tokens';
 
 const spacingTokens = spacing.spacing;
 

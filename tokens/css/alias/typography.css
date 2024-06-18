@@ -1,0 +1,26 @@
+:root {
+  --button-lg-emphasis: var(--emphasis-body) var(--size-body-md)/100% var(--brand);
+  --button-lg-default: var(--default-body) var(--size-body-md)/100% var(--brand);
+  --button-sm-emphasis: var(--emphasis-body) var(--size-body-sm)/100% var(--brand);
+  --button-sm-default: var(--default-body) var(--size-body-sm)/100% var(--brand);
+  --body-xl-emphasis: var(--emphasis-body) var(--font-size-20)/var(--line-height-body) var(--brand);
+  --body-xl-default: var(--default-body) var(--font-size-20)/var(--line-height-body) var(--brand);
+  --body-lg-emphasis: var(--emphasis-body) var(--size-body-lg)/var(--line-height-body) var(--brand);
+  --body-lg-default: var(--default-body) var(--size-body-lg)/var(--line-height-body) var(--brand);
+  --body-md-emphasis: var(--emphasis-body) var(--size-body-md)/var(--line-height-body) var(--brand);
+  --body-md-default: var(--default-body) var(--size-body-md)/var(--line-height-body) var(--brand);
+  --body-sm-emphasis: var(--emphasis-body) var(--size-body-sm)/var(--line-height-body) var(--brand);
+  --body-sm-default: var(--default-body) var(--size-body-sm)/var(--line-height-body) var(--brand);
+  --body-xs-emphasis: var(--emphasis-body) var(--size-body-xs)/var(--line-height-body) var(--brand);
+  --body-xs-default: var(--default-body) var(--size-body-xs)/var(--line-height-body) var(--brand);
+  --heading-5-emphasis: var(--emphasis-heading) var(--size-heading-5)/var(--line-height-heading) var(--brand);
+  --heading-5-default: var(--default-heading) var(--size-heading-5)/var(--line-height-heading) var(--brand);
+  --heading-4-emphasis: var(--emphasis-heading) var(--size-heading-4)/var(--line-height-heading) var(--brand);
+  --heading-4-default: var(--default-heading) var(--size-heading-4)/var(--line-height-heading) var(--brand);
+  --heading-3-emphasis: var(--emphasis-heading) var(--size-heading-3)/var(--line-height-heading) var(--brand);
+  --heading-3-default: var(--default-heading) var(--size-heading-3)/var(--line-height-heading) var(--brand);
+  --heading-2-emphasis: var(--emphasis-heading) var(--size-heading-2)/var(--line-height-heading) var(--brand);
+  --heading-2-default: var(--default-heading) var(--size-heading-2)/var(--line-height-heading) var(--brand);
+  --heading-1-emphasis: var(--emphasis-heading) var(--size-heading-1)/var(--line-height-heading) var(--brand);
+  --heading-1-default: var(--default-heading) var(--size-heading-1)/var(--line-height-heading) var(--brand);
+}
