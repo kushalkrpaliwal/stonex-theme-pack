@@ -1,0 +1,195 @@
+$types: (
+        primary,
+        secondary,
+        tertiary
+);
+$styles: (
+        info,
+        success,
+        warning,
+        error
+);
+
+// Suitable way to render gradient text.
+// This is a bit hacky but works well with all browsers, although difficult to maintain along with simple background and interactions
+// replace once better solution is available on the market(mid 2024).
+@mixin withGradientColor($color) {
+  background: $color text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin resetGradientColor() {
+  -webkit-text-fill-color: currentColor;
+}
+
+@mixin withGradientColorOnChange($color) {
+  background: $color text;
+}
+
+@mixin withGradientRoundedBorder($color) {
+  position: relative;
+
+  // Most suitable way to render border with border radius and gradient as a color.
+  // This is a bit hacky but works well with all browsers, replace once better solution is available on the market(mid 2024).
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    background: $color;
+    background-clip: border-box;
+    background-origin: border-box;
+    z-index: 1;
+  }
+}
+
+@mixin withGradientRoundedBorderOnChange($color) {
+  &::before {
+    background: $color;
+  }
+}
+
+@layer utilities {
+  .cta-button {
+    @apply flex items-center justify-center gap-8 w-[fit-content];
+
+    // Make browser accessibility work better with rounded buttons
+    &:focus-visible {
+      outline: currentColor solid 2px;
+      outline-offset: 0;
+    }
+  }
+
+  .cta-button-primary {
+    @apply cta-button rounded-Button shadow-1;
+
+    &:hover {
+      @apply shadow-2
+    }
+  }
+
+  .cta-button-secondary {
+    @apply cta-button rounded-Button outline-1 outline -outline-offset-1;
+  }
+
+  // Brand button has slightly different structure and use lot of gradients so better to treat it separately
+  // primary
+  .cta-button-brand-primary {
+    @apply cta-button-primary;
+    background: var(--color-button-primary-background-default);
+    color: var(--color-button-primary-foreground-default);
+
+    &:hover {
+      background: var(--color-button-primary-background-hover);
+      color: var(--color-button-primary-foreground-hover);
+    }
+
+    &:active, &:focus {
+      background: var(--color-button-primary-background-active);
+      color: var(--color-button-primary-foreground-active);
+    }
+  }
+
+  // secondary
+  .cta-button-brand-secondary {
+    @apply cta-button rounded-Button;
+    @include withGradientColor(var(--color-button-secondary-foreground-default));
+    @include withGradientRoundedBorder(var(--color-button-secondary-foreground-default));
+     //This has effect on SVG icons that inherits a currentColor from,
+     //although it is not visible for gradient text
+    color: var(--color-button-secondary-foreground-hover);
+
+    &:hover {
+      @include withGradientColorOnChange(var(--color-button-secondary-foreground-hover));
+      @include withGradientRoundedBorderOnChange(var(--color-button-secondary-foreground-hover));
+      @include resetGradientColor;
+      background: var(--color-button-secondary-background-hover);
+      color: var(--color-button-secondary-foreground-hover);
+    }
+
+    &:active, &:focus {
+      @include withGradientRoundedBorderOnChange(var(--color-button-secondary-background-active));
+      @include resetGradientColor;
+      background: var(--color-button-secondary-background-active);
+      color: var(--color-button-secondary-foreground-active);
+    }
+  }
+
+  // tertiary
+  .cta-button-brand-tertiary {
+    @apply cta-button font-bold;
+    @include withGradientColor(var(--color-link-default));
+    // This has effect on SVG icons that inherits a currentColor from,
+    // although it is not visible for gradient text
+    color: var(--color-link-hover);
+
+    &:hover {
+      @include withGradientColorOnChange(var(--color-link-hover));
+      color: var(--color-link-hover);
+    }
+
+    &:active, &:focus {
+      @include withGradientColorOnChange(var(--color-link-active));
+      color: var(--color-link-active);
+    }
+  }
+
+  @each $style in $styles {
+    // primary
+    .cta-button-#{$style}-primary {
+      @apply cta-button-primary;
+      background: var(--color-#{$style}-background-default);
+      color: var(--color-#{$style}-foreground-default);
+
+      &:hover {
+        background: var(--color-#{$style}-background-hover);
+        color: var(--color-#{$style}-foreground-hover);
+      }
+
+      &:active, &:focus {
+        background: var(--color-#{$style}-background-active);
+        color: var(--color-#{$style}-foreground-active);
+      }
+    }
+
+    // secondary
+    .cta-button-#{$style}-secondary {
+      @apply cta-button-secondary;
+      outline-color: var(--color-#{$style}-foreground-default);
+      color: var(--color-#{$style}-foreground-default);
+
+      &:hover {
+        outline-color: var(--color-#{$style}-foreground-hover);
+        color: var(--color-#{$style}-foreground-hover);
+      }
+
+      &:active, &:focus {
+        background: var(--color-#{$style}-background-active);
+        color: var(--color-#{$style}-foreground-active);
+        outline-color: var(--color-#{$style}-background-active);
+      }
+    }
+
+    // tertiary
+    .cta-button-#{$style}-tertiary {
+      @apply cta-button font-bold;
+      color: var(--color-#{$style}-foreground-default);
+
+      &:hover {
+        color: var(--color-#{$style}-foreground-hover);
+      }
+
+      &:active, &:focus {
+        color: var(--color-#{$style}-foreground-active);
+      }
+    }
+  }
+}

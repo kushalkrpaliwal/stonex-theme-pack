@@ -8,6 +8,7 @@ export type Token = {
   type: string;
   value: Value;
   path: string[];
+  filePath: string;
   name: string;
   attributes: Attribute;
 };

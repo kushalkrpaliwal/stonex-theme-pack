@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* StonexForma Regular */
+@font-face {
+  font-family: 'Stonex Forma';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/StonexForma/StonexForma-Regular.woff2') format('woff2'),
+  url('/fonts/StonexForma/StonexForma-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Stonex Forma';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/StonexForma/StonexForma-Italic.woff2') format('woff2'),
+  url('/fonts/StonexForma/StonexForma-Italic.woff') format('woff');
+}
+/* StonexForma Bold */
+@font-face {
+  font-family: 'Stonex Forma';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/StonexForma/StonexForma-Bold.woff2') format('woff2'),
+  url('/fonts/StonexForma/StonexForma-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Stonex Forma';
+  font-style: italic;
+  font-weight: 700;
+  src: url('/fonts/StonexForma/StonexForma-Bolditalic.woff2') format('woff2'),
+  url('/fonts/StonexForma/StonexForma-Bolditalic.woff') format('woff');
+}

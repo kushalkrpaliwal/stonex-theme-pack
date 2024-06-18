@@ -58,7 +58,7 @@ const ThemePackParametersEditor: FC = () => {
           />
         </ReadOnlyContainer>
       );
-    case ThemePackParameters.boxModelEditor:
+    case ThemePackParameters.boxModel:
       return (
         <ReadOnlyContainer isReadOnly={isReadOnly}>
           <BoxModel

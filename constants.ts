@@ -3,7 +3,7 @@ export enum ThemePackParameters {
   spacingParam = 'stp-spacing-parameter',
   colorParam = 'stp-color-parameter',
   brandCtaParam = 'stp-brand-cta-parameter',
-  boxModelEditor = 'stp-box-model-editor',
+  boxModel = 'stp-box-model',
   broderRadiusParam = 'stp-border-radius-parameter',
   boxShadowParam = 'stp-box-shadow-parameter',
   flexBoxParam = 'stp-flex-box-parameter',
