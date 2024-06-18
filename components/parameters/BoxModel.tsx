@@ -1,22 +1,36 @@
-'use client';
+'use client'
 import React, { useEffect, FC, ChangeEventHandler } from 'react'
-import clsx from 'clsx';
-import { SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react';
-import { spacing } from '../../tokens/tokens';
+import clsx from 'clsx'
+import { SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react'
+import { spacing } from '../../tokens/tokens'
 
-const spacingTokens = spacing.spacing;
+const spacingTokens = {
+  'None': '',
+  // @ts-ignore
+  ...Object.fromEntries(
+    Object.entries(spacing.padding).filter(([key]) => !key.includes('Button') && !key.includes('page'))
+  ),
+}
+const borderTokens = {
+  'None': '',
+  '1': '1',
+  '2': '2',
+  '3': '3',
+  '4': '4',
+  '5': '5',
+}
+
+type Sides = {
+  top: string;
+  right: string;
+  bottom: string;
+  left: string;
+};
 
 export type BoxModelType = {
   padding: Sides;
   border: Sides;
   margin: Sides;
-};
-
-type Sides = {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
 };
 
 type BoxModelEditorProps = {
@@ -25,10 +39,10 @@ type BoxModelEditorProps = {
 };
 
 const defaultState: BoxModelType = {
-  padding: { top: 0, right: 0, bottom: 0, left: 0 },
-  border: { top: 0, right: 0, bottom: 0, left: 0 },
-  margin: { top: 0, right: 0, bottom: 0, left: 0 },
-};
+  padding: { top: '', right: '', bottom: '', left: '' },
+  border: { top: '', right: '', bottom: '', left: '' },
+  margin: { top: '', right: '', bottom: '', left: '' },
+}
 
 const Background = () => <svg preserveAspectRatio="none" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
   <polygon points="0,0 100,50 0,100" fill="#dfe6ef"/>
@@ -42,12 +56,12 @@ const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorPr
     setValue(previousValue => {
       return {
         newValue: previousValue || defaultState,
-      };
-    });
+      }
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
-  const handleChange = (property: keyof BoxModelType, side: keyof Sides, value: number) => {
+  const handleChange = (property: keyof BoxModelType, side: keyof Sides, value: string) => {
     setValue((prev = defaultState) => {
       return {
         newValue: {
@@ -57,14 +71,19 @@ const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorPr
             [side]: value,
           },
         },
-      };
-    });
-  };
+      }
+    })
+  }
 
-  const renderControls = (value: number, onChange: (param: number) => void, gridClassNames: string) => {
+  const renderControls = ({
+    param,
+    value,
+    gridClassNames,
+    onChange
+  }: { param: string; value: string, onChange: (param: string) => void, gridClassNames: string }) => {
     const handleSelectChange: ChangeEventHandler<HTMLSelectElement> = event => {
-      onChange(parseInt(event.target.value));
-    };
+      onChange(event.target.value)
+    }
 
     return (
       <select
@@ -72,35 +91,50 @@ const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorPr
         value={value}
         onChange={handleSelectChange}
       >
-        <option value={0}>{0}</option>
-        {Object.keys(spacingTokens).map(spacing => (
+        {Object.keys(param === 'border' ? borderTokens : spacingTokens).map(spacing => (
           <option key={spacing} value={spacing}>
             {spacing}
           </option>
         ))}
       </select>
-    );
-  };
+    )
+  }
 
   return (
-    <div data-brand={"stonex"} data-theme={"light"}
+    <div data-brand={'stonex'} data-theme={'light'}
          className={'grid grid-cols-7 grid-rows-7 font-body-xs-default overflow-hidden'}>
       <div
         className={'margin-box-layout grid grid-cols-7 grid-rows-7 col-start-1 row-start-1 col-span-7 row-span-7'}>
         <Background/>
         <span className={'box-model-label'}>Margin</span>
-        {renderControls(value?.margin.top || 0, val => handleChange('margin', 'top', val), 'col-start-4 row-start-1')}
-        {renderControls(
-          value?.margin.right || 0,
-          val => handleChange('margin', 'right', val),
-          'col-start-7 row-start-4'
+        {renderControls({
+          param: 'margin',
+          value: value?.margin.top || '',
+          onChange: val => handleChange('margin', 'top', val),
+          gridClassNames: 'col-start-4 row-start-1'
+        })
+        }
+        {renderControls({
+            param: 'margin',
+            value: value?.margin.right || '',
+            onChange: val => handleChange('margin', 'right', val),
+            gridClassNames: 'col-start-7 row-start-4'
+          }
         )}
-        {renderControls(
-          value?.margin.bottom || 0,
-          val => handleChange('margin', 'bottom', val),
-          'col-start-4 row-start-7'
+        {renderControls({
+            param: 'margin',
+            value: value?.margin.bottom || '',
+            onChange: val => handleChange('margin', 'bottom', val),
+            gridClassNames: 'col-start-4 row-start-7'
+          }
         )}
-        {renderControls(value?.margin.left || 0, val => handleChange('margin', 'left', val), 'col-start-1 row-start-4')}
+        {renderControls({
+          param: 'margin',
+          value: value?.margin.left || '',
+          onChange: val => handleChange('margin', 'left', val),
+          gridClassNames: 'col-start-1 row-start-4'
+        })
+        }
       </div>
 
       <div
@@ -108,18 +142,34 @@ const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorPr
         <Background/>
         <span className={'box-model-label'}>Border</span>
 
-        {renderControls(value?.border.top || 0, val => handleChange('border', 'top', val), 'col-start-3 row-start-1')}
-        {renderControls(
-          value?.border.right || 0,
-          val => handleChange('border', 'right', val),
-          'col-start-5 row-start-3'
+        {renderControls({
+          param: 'border',
+          value: value?.border.top || '',
+          onChange: val => handleChange('border', 'top', val),
+          gridClassNames: 'col-start-3 row-start-1'
+        })
+        }
+        {renderControls({
+            param: 'border',
+            value: value?.border.right || '',
+            onChange: val => handleChange('border', 'right', val),
+            gridClassNames: 'col-start-5 row-start-3'
+          }
         )}
-        {renderControls(
-          value?.border.bottom || 0,
-          val => handleChange('border', 'bottom', val),
-          'col-start-3 row-start-5'
+        {renderControls({
+            param: 'border',
+            value: value?.border.bottom || '',
+            onChange: val => handleChange('border', 'bottom', val),
+            gridClassNames: 'col-start-3 row-start-5'
+          }
         )}
-        {renderControls(value?.border.left || 0, val => handleChange('border', 'left', val), 'col-start-1 row-start-3')}
+        {renderControls({
+          param: 'border',
+          value: value?.border.left || '',
+          onChange: val => handleChange('border', 'left', val),
+          gridClassNames: 'col-start-1 row-start-3'
+        })
+        }
       </div>
 
       <div
@@ -127,27 +177,39 @@ const BoxModel: FC<BoxModelEditorProps> = ({ value, setValue }: BoxModelEditorPr
         <Background/>
         <span className={'box-model-label'}>Padding</span>
 
-        {renderControls(value?.padding.top || 0, val => handleChange('padding', 'top', val), 'col-start-2 row-start-1')}
-        {renderControls(
-          value?.padding.right || 0,
-          val => handleChange('padding', 'right', val),
-          'col-start-3 row-start-2'
+        {renderControls({
+          param: 'padding',
+          value: value?.padding.top || '',
+          onChange: val => handleChange('padding', 'top', val),
+          gridClassNames: 'col-start-2 row-start-1'
+        })
+        }
+        {renderControls({
+            param: 'padding',
+            value: value?.padding.right || '',
+            onChange: val => handleChange('padding', 'right', val),
+            gridClassNames: 'col-start-3 row-start-2'
+          }
         )}
-        {renderControls(
-          value?.padding.bottom || 0,
-          val => handleChange('padding', 'bottom', val),
-          'col-start-2 row-start-3'
+        {renderControls({
+            param: 'padding',
+            value: value?.padding.bottom || '',
+            onChange: val => handleChange('padding', 'bottom', val),
+            gridClassNames: 'col-start-2 row-start-3'
+          }
         )}
-        {renderControls(
-          value?.padding.left || 0,
-          val => handleChange('padding', 'left', val),
-          'col-start-1 row-start-2'
+        {renderControls({
+            param: 'padding',
+            value: value?.padding.left || '',
+            onChange: val => handleChange('padding', 'left', val),
+            gridClassNames: 'col-start-1 row-start-2'
+          }
         )}
       </div>
 
       <div className={'relative bg-Tints-Saturated-400 rounded-2 col-start-4 row-start-4 col-span-1 row-span-1'}/>
     </div>
-  );
-};
+  )
+}
 
-export default BoxModel;
+export default BoxModel
