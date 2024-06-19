@@ -104,7 +104,7 @@ const Settings: FC = () => {
                 {colors.map((item, index) => (
                   <div
                     key={item.value + index}
-                    className={`w-48 h-48 rounded-Button`}
+                    className={`w-48 h-48 rounded-Button border-2 border-black`}
                     style={{ background: `var(--${item.value})` }}
                   />
                 ))}
