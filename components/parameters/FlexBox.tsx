@@ -8,11 +8,10 @@ import { tokens } from '../../tokens/tokens'
 const FLEX_BOX_OPTIONS: FlexBoxControls = {
   alignItems: [
     { label: 'None', value: '' },
-    { label: 'Left', value: 'items-left' },
+    { label: 'Left', value: 'items-start' },
     { label: 'Center', value: 'items-center' },
-    { label: 'Right', value: 'items-right' },
+    { label: 'Right', value: 'items-end' },
     { label: 'Stretch', value: 'items-stretch' },
-    { label: 'Auto', value: 'items-auto' },
     { label: 'Baseline', value: 'items-baseline' },
   ],
   justifyContent: [
