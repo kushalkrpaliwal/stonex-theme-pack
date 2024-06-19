@@ -17,6 +17,13 @@
     "canvas": {
       "parameterTypes": [
         {
+          "type": "stp-set-up-theme-parameter",
+          "displayName": "Stonex Set Up Theme",
+          "editorUrl": "/editor",
+          "configureUrl": "/config",
+          "renderableInPropertyPanel": true
+        },
+        {
           "type": "stp-spacing-parameter",
           "displayName": "Stonex Spacing",
           "editorUrl": "/editor",

@@ -11,6 +11,8 @@ import BoxModel, { BoxModelType } from '../components/parameters/BoxModel';
 import { BorderRadiusSlider } from '../components/parameters/BorderRadius';
 import { BoxShadow } from '../components/parameters/BoxShadow'
 import FlexBox from '../components/parameters/FlexBox'
+import SetUpThemeParam from '../components/parameters/SetUpThemeParam'
+import { Theme } from '../types/common';
 
 const ThemePackParametersEditor: FC = () => {
   const { value, setValue, metadata, isReadOnly } = useMeshLocation<'paramType', string | BrandCTAProps | undefined>();
@@ -20,6 +22,17 @@ const ThemePackParametersEditor: FC = () => {
   const selectedParameter = (metadata.parameterDefinition as MeshThemePackParametersDefinition).type || '';
 
   switch (selectedParameter) {
+    case ThemePackParameters.setUpTheme:
+      return (
+        <ReadOnlyContainer isReadOnly={isReadOnly}>
+          <SetUpThemeParam
+            value={value as Theme}
+            settings={metadata?.settings as SettingsParams | undefined}
+            setValue={setValue as SetLocationValueDispatch<Theme | undefined, Theme | undefined>}
+            required={true}
+          />
+        </ReadOnlyContainer>
+      );
     case ThemePackParameters.titleStyle:
       return (
         <ReadOnlyContainer isReadOnly={isReadOnly}>

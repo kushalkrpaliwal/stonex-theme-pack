@@ -1,4 +1,5 @@
 export enum ThemePackParameters {
+  setUpTheme = 'stp-set-up-theme-parameter',
   titleStyle = 'stp-title-style-parameter',
   spacingParam = 'stp-spacing-parameter',
   colorParam = 'stp-color-parameter',
