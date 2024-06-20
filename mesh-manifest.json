@@ -24,6 +24,13 @@
           "renderableInPropertyPanel": true
         },
         {
+          "type": "stp-gap-parameter",
+          "displayName": "Stonex Gap",
+          "editorUrl": "/editor",
+          "configureUrl": "/config",
+          "renderableInPropertyPanel": true
+        },
+        {
           "type": "stp-spacing-parameter",
           "displayName": "Stonex Spacing",
           "editorUrl": "/editor",

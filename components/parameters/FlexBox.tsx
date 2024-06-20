@@ -4,6 +4,7 @@ import { InputToggle, SetLocationValueDispatch } from '@uniformdev/mesh-sdk-reac
 import { FlexBoxControls, FlexBoxValue } from '../../types/mesh'
 import ReactSlider from 'react-slider'
 import { tokens } from '../../tokens/tokens'
+import { getGapTokens } from '../helpers/getTokensMap'
 
 const FLEX_BOX_OPTIONS: FlexBoxControls = {
   alignItems: [
@@ -30,23 +31,7 @@ const FLEX_BOX_OPTIONS: FlexBoxControls = {
     { label: 'Column', value: 'flex-col' },
     { label: 'Column Reverse', value: 'flex-col-reverse' },
   ],
-  gap: [
-    { label: 'None', value: '' },
-    ...tokens
-      .filter((t, i, s) => s.indexOf(t) === i && t?.attributes?.category === 'gap')
-      .map(t => ({
-        // @ts-ignore
-        label: t.attributes?.type?.toUpperCase(),
-        value: t.name
-      }))
-      .reduce((acc: SegmentedControlOption<string>[], current: SegmentedControlOption<string>) => {
-        const x = acc.find(item => item.value === current.value)
-        if (!x) {
-          acc.push(current)
-        }
-        return acc
-      }, [])
-  ],
+  gap: getGapTokens(),
 }
 
 const defaultState: FlexBoxValue = {

@@ -1,21 +1,22 @@
 import React, { FC } from 'react';
 import { Callout, SetLocationValueDispatch, useMeshLocation } from '@uniformdev/mesh-sdk-react';
 import TitleStyleParam from '../components/parameters/TitleStyleParam';
-import SpacingParam, { SpacingOptionType } from '../components/parameters/SpacingParam'
+import SpacingParam from '../components/parameters/SpacingParam'
 import { ThemePackParameters } from '../constants';
 import { FlexBoxValue, MeshThemePackParametersDefinition, SettingsParams, SliderOptions } from '../types/mesh'
 import ReadOnlyContainer from '../components/ReadOnlyContainer';
 import ColorStyleParam from '../components/parameters/ColorStyleParam';
 import BrandCTAParam, { BrandCTAProps } from '../components/parameters/BrandCTAParam'
 import BoxModel, { BoxModelType } from '../components/parameters/BoxModel';
-import { BorderRadiusSlider } from '../components/parameters/BorderRadius';
+import { BorderRadiusParam } from '../components/parameters/BorderRadius';
 import { BoxShadow } from '../components/parameters/BoxShadow'
 import FlexBox from '../components/parameters/FlexBox'
 import SetUpThemeParam from '../components/parameters/SetUpThemeParam'
 import { Theme } from '../types/common';
+import { GapParam } from '../components/parameters/Gap'
 
 const ThemePackParametersEditor: FC = () => {
-  const { value, setValue, metadata, isReadOnly } = useMeshLocation<'paramType', string | BrandCTAProps | undefined>();
+  const { value, setValue, metadata, isReadOnly } = useMeshLocation<'paramType', string | undefined>();
 
   const { selectedThemeName, themes } = (metadata?.settings as SettingsParams) || {};
 
@@ -26,7 +27,7 @@ const ThemePackParametersEditor: FC = () => {
       return (
         <ReadOnlyContainer isReadOnly={isReadOnly}>
           <SetUpThemeParam
-            value={value as Theme}
+            value={value as Theme | undefined}
             settings={metadata?.settings as SettingsParams | undefined}
             setValue={setValue as SetLocationValueDispatch<Theme | undefined, Theme | undefined>}
             required={true}
@@ -46,9 +47,18 @@ const ThemePackParametersEditor: FC = () => {
       return (
         <ReadOnlyContainer isReadOnly={isReadOnly}>
           <SpacingParam
-            value={value as SpacingOptionType}
+            value={value as string}
             selectedTheme={themes?.[selectedThemeName]}
-            setValue={setValue as SetLocationValueDispatch<SpacingOptionType | undefined, SpacingOptionType | undefined>}
+            setValue={setValue as SetLocationValueDispatch<string | undefined, string | undefined>}
+          />
+        </ReadOnlyContainer>
+      );
+    case ThemePackParameters.gapParam:
+      return (
+        <ReadOnlyContainer isReadOnly={isReadOnly}>
+          <GapParam
+            value={value as string}
+            setValue={setValue}
           />
         </ReadOnlyContainer>
       );
@@ -75,7 +85,7 @@ const ThemePackParametersEditor: FC = () => {
       return (
         <ReadOnlyContainer isReadOnly={isReadOnly}>
           <BoxModel
-            value={value as BoxModelType}
+            value={value as BoxModelType | undefined}
             setValue={setValue as SetLocationValueDispatch<BoxModelType | undefined, BoxModelType | undefined>}
           />
         </ReadOnlyContainer>
@@ -83,7 +93,7 @@ const ThemePackParametersEditor: FC = () => {
     case ThemePackParameters.broderRadiusParam:
       return (
         <ReadOnlyContainer isReadOnly={isReadOnly}>
-          <BorderRadiusSlider
+          <BorderRadiusParam
             value={value as string}
             setValue={setValue as SetLocationValueDispatch<string | undefined, string | undefined>}
           />
@@ -102,7 +112,7 @@ const ThemePackParametersEditor: FC = () => {
       return (
         <ReadOnlyContainer isReadOnly={isReadOnly}>
           <FlexBox
-            value={value as FlexBoxValue}
+            value={value as FlexBoxValue | undefined}
             setValue={setValue as SetLocationValueDispatch<FlexBoxValue | undefined, FlexBoxValue | undefined>}
           />
         </ReadOnlyContainer>

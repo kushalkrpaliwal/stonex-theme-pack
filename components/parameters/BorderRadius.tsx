@@ -1,33 +1,16 @@
 import React, { FC } from 'react';
 import { SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react';
-import { tokens } from '../../tokens/tokens'
-import { SegmentedControl } from '@uniformdev/design-system'
+import { SegmentedControl, SegmentedControlOption } from '@uniformdev/design-system'
+import { getBorderRadiusTokens } from '../helpers/getTokensMap'
 
-type Option = {
-  value: string;
-  label: string;
-};
+const options= getBorderRadiusTokens()
 
-const options: Option[] = [
-  {
-    label: 'None',
-    value: '',
-  },
-  ...tokens
-    .filter(t => t.type === 'borderRadius' && t.filePath.includes('wireframe'))
-    .map(t => ({
-      label: t.attributes.type || 'None',
-      value: t.name,
-    })),
-]
-
-
-type BorderRadiusSliderProps = {
+type BorderRadiusParamProps = {
   value?: string;
   setValue: SetLocationValueDispatch<string | undefined, string | undefined>;
 };
 
-export const BorderRadiusSlider: FC<BorderRadiusSliderProps> = ({ setValue, value }) => {
+export const BorderRadiusParam: FC<BorderRadiusParamProps> = ({ setValue, value }) => {
   const handleValueChange = (value: string) => {
     setValue(() => ({ newValue: value }));
   };

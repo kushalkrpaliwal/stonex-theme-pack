@@ -1,17 +1,12 @@
 import { FC, useEffect } from 'react';
-import { SegmentedControl } from '@uniformdev/design-system';
+import { SegmentedControl, SegmentedControlOption } from '@uniformdev/design-system'
 import { SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react';
 import { Theme } from '../../types/common';
 import { spacing } from '../../tokens/tokens';
 
 const spacingTokens = spacing.spacing;
 
-export type SpacingOptionType = {
-  label: string;
-  value: string;
-};
-
-const SPACING_OPTIONS: SpacingOptionType[]= Object.entries(spacingTokens)
+const SPACING_OPTIONS: SegmentedControlOption<string>[]= Object.entries(spacingTokens)
   .filter(([label]) => label !== 'none')
   .map(
   ([label, value]) => ({
@@ -21,8 +16,8 @@ const SPACING_OPTIONS: SpacingOptionType[]= Object.entries(spacingTokens)
 );
 
 type SpacingParamsProps = {
-  value?: SpacingOptionType;
-  setValue: SetLocationValueDispatch<SpacingOptionType | undefined, SpacingOptionType | undefined>;
+  value?: string;
+  setValue: SetLocationValueDispatch<string | undefined, string | undefined>;
   selectedTheme: Theme;
 };
 
@@ -32,7 +27,7 @@ const SpacingParam: FC<SpacingParamsProps> = ({ value, setValue }: SpacingParams
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handelSetValue = (newValue: string) => setValue(() => ({ newValue: SPACING_OPTIONS.find(option => option.value === newValue)}));
+  const handelSetValue = (newValue: string) => setValue(() => ({ newValue: SPACING_OPTIONS.find(option => option.value === newValue)?.value}));
 
   return (
     <SegmentedControl
@@ -40,7 +35,7 @@ const SpacingParam: FC<SpacingParamsProps> = ({ value, setValue }: SpacingParams
       onChange={handelSetValue}
       options={SPACING_OPTIONS}
       size="sm"
-      value={value?.value}
+      value={value}
       noCheckmark
       orientation={'horizontal'}
     />
