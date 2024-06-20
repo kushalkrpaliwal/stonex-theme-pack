@@ -1,9 +1,8 @@
 import React, { FC, useEffect, useState } from 'react'
-import { SegmentedControl, SegmentedControlOption } from '@uniformdev/design-system'
+import { SegmentedControl } from '@uniformdev/design-system'
 import { InputToggle, SetLocationValueDispatch } from '@uniformdev/mesh-sdk-react'
 import { FlexBoxControls, FlexBoxValue } from '../../types/mesh'
 import ReactSlider from 'react-slider'
-import { tokens } from '../../tokens/tokens'
 import { getGapTokens } from '../helpers/getTokensMap'
 
 const FLEX_BOX_OPTIONS: FlexBoxControls = {
