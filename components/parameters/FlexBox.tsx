@@ -9,9 +9,9 @@ import { getGapTokens } from '../helpers/getTokensMap'
 const FLEX_BOX_OPTIONS: FlexBoxControls = {
   alignItems: [
     { label: 'None', value: '' },
-    { label: 'Left', value: 'items-start' },
+    { label: 'Start', value: 'items-start' },
     { label: 'Center', value: 'items-center' },
-    { label: 'Right', value: 'items-end' },
+    { label: 'End', value: 'items-end' },
     { label: 'Stretch', value: 'items-stretch' },
     { label: 'Baseline', value: 'items-baseline' },
   ],
